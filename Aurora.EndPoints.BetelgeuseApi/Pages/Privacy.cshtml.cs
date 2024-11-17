@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Aurora.EndPoints.SeraphimAPI.Pages;
+namespace Aurora.EndPoints.BetelgeuseApi.Pages;
 
 public class PrivacyModel : PageModel
 {
