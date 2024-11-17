@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Autota.Data.Core</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Entities\Configurations\" />
+      <Folder Include="Entities\Database\Models\" />
+      <Folder Include="Providers\" />
+      <Folder Include="Repositories\" />
+    </ItemGroup>
+
+</Project>

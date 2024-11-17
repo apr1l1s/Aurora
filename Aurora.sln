@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{867AFECA-CC0A-402B-8F3E-B56DCB85DEE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{D6F0A386-3CAE-42AB-A0B8-5BB8045294E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoints", "EndPoints", "{2D0CCCC7-93B2-4DE6-9599-2D70F8A28538}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CECA1C6F-9BD1-42DC-8178-CE29C8F35AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Domain.Core", "Aurora.Domain.Core\Aurora.Domain.Core.csproj", "{5F73E119-E707-450E-BE00-B70DA8319F45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Data.Core", "Aurora.Data.Core\Aurora.Data.Core.csproj", "{96A455C6-7D82-4C6C-BCA8-5DFB4ED0C9B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Data.Core.Tests", "Aurora.Data.Core.Tests\Aurora.Data.Core.Tests.csproj", "{52BE62C7-91BC-4447-913D-0E19701E5132}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Domain.Core.Tests", "Aurora.Domain.Core.Tests\Aurora.Domain.Core.Tests.csproj", "{D6AC97AC-DAA0-4016-8632-6087B9512E04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.EndPoints.BetelgeuseApi", "Aurora.EndPoints.BetelgeuseApi\Aurora.EndPoints.BetelgeuseApi.csproj", "{B9D98993-F8DA-4195-963B-7CB819019620}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F73E119-E707-450E-BE00-B70DA8319F45} = {D6F0A386-3CAE-42AB-A0B8-5BB8045294E1}
+		{96A455C6-7D82-4C6C-BCA8-5DFB4ED0C9B5} = {867AFECA-CC0A-402B-8F3E-B56DCB85DEE5}
+		{52BE62C7-91BC-4447-913D-0E19701E5132} = {CECA1C6F-9BD1-42DC-8178-CE29C8F35AD3}
+		{D6AC97AC-DAA0-4016-8632-6087B9512E04} = {CECA1C6F-9BD1-42DC-8178-CE29C8F35AD3}
+		{B9D98993-F8DA-4195-963B-7CB819019620} = {2D0CCCC7-93B2-4DE6-9599-2D70F8A28538}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F73E119-E707-450E-BE00-B70DA8319F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F73E119-E707-450E-BE00-B70DA8319F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F73E119-E707-450E-BE00-B70DA8319F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F73E119-E707-450E-BE00-B70DA8319F45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96A455C6-7D82-4C6C-BCA8-5DFB4ED0C9B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96A455C6-7D82-4C6C-BCA8-5DFB4ED0C9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96A455C6-7D82-4C6C-BCA8-5DFB4ED0C9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96A455C6-7D82-4C6C-BCA8-5DFB4ED0C9B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52BE62C7-91BC-4447-913D-0E19701E5132}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52BE62C7-91BC-4447-913D-0E19701E5132}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52BE62C7-91BC-4447-913D-0E19701E5132}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52BE62C7-91BC-4447-913D-0E19701E5132}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6AC97AC-DAA0-4016-8632-6087B9512E04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6AC97AC-DAA0-4016-8632-6087B9512E04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6AC97AC-DAA0-4016-8632-6087B9512E04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6AC97AC-DAA0-4016-8632-6087B9512E04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D98993-F8DA-4195-963B-7CB819019620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D98993-F8DA-4195-963B-7CB819019620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D98993-F8DA-4195-963B-7CB819019620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D98993-F8DA-4195-963B-7CB819019620}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
