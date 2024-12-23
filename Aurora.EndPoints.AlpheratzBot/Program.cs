@@ -30,3 +30,4 @@ if (messageScheduler == null)
 }
 
 messageScheduler.Start();
+Console.ReadLine();

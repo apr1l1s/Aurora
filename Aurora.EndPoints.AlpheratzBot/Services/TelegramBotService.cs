@@ -31,47 +31,50 @@ public class TelegramBotService(TelegramBotClient telegramBot,
     public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, 
         CancellationToken cancellationToken)
     {
-        var message = update.Message;
-        if (message == null)
+        _ = Task.Run(async () =>
         {
-            return;
-        }
+            var message = update.Message;
+            if (message == null)
+            {
+                return;
+            }
 
-        var sub = new Subscriber(message);
-        var command = message.Text;
+            var sub = new Subscriber(message);
+            var command = message.Text;
 
-        switch (command)
-        {
-            case "/sub":
-                if (subscribersRepository.AddItem(sub))
-                {
-                    await telegramBot.SendMessage(message.Chat.Id, "Лайк, подписка",
-                        messageThreadId: message.MessageThreadId, cancellationToken: cancellationToken);
-                    logger.LogInformation($"New subscriber: {message.Chat.Id}");
-                }
+            switch (command)
+            {
+                case "/sub":
+                    if (subscribersRepository.AddItem(sub))
+                    {
+                        await telegramBot.SendMessage(message.Chat.Id, "Лайк, подписка",
+                            messageThreadId: message.MessageThreadId, cancellationToken: cancellationToken);
+                        logger.LogInformation($"New subscriber: {message.Chat.Id}");
+                    }
 
-                break;
+                    break;
 
-            case "/unsub":
-                if (subscribersRepository.RemoveItem(message.Chat.Id) > 0)
-                {
-                    await telegramBot.SendMessage(message.Chat.Id, "Понял, вычеркиваю.",
-                        cancellationToken: cancellationToken);
-                    logger.LogInformation($"Unsubscribed: {message.Chat.Id}");
-                }
+                case "/unsub":
+                    if (subscribersRepository.RemoveItem(message.Chat.Id) > 0)
+                    {
+                        await telegramBot.SendMessage(message.Chat.Id, "Понял, вычеркиваю.",
+                            cancellationToken: cancellationToken);
+                        logger.LogInformation($"Unsubscribed: {message.Chat.Id}");
+                    }
 
-                break;
+                    break;
 
-            default:
-                if (command != null)
-                {
-                    await telegramBot.SendMessage(message.Chat.Id, command, cancellationToken: cancellationToken);
-                }
+                default:
+                    if (command != null)
+                    {
+                        await telegramBot.SendMessage(message.Chat.Id, command, cancellationToken: cancellationToken);
+                    }
 
-                logger.LogInformation($"Unknown message: {message.Text}");
+                    logger.LogInformation($"Unknown message: {message.Text}");
 
-                break;
-        }
+                    break;
+            }
+        });
     }
 
     public Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, HandleErrorSource source,
