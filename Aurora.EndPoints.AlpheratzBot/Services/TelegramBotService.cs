@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Configuration;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
@@ -23,7 +24,8 @@ public class TelegramBotService(TelegramBotClient telegramBot,
         telegramBot.StartReceiving(
             updateHandler:HandleUpdateAsync,
             errorHandler: HandleErrorAsync);
-        Console.WriteLine("Bot is receiving messages.");
+
+        logger.LogInformation("Bot is receiving messages.");
     }
 
     public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, 
@@ -65,6 +67,7 @@ public class TelegramBotService(TelegramBotClient telegramBot,
                 {
                     await telegramBot.SendMessage(message.Chat.Id, command, cancellationToken: cancellationToken);
                 }
+
                 logger.LogInformation($"Unknown message: {message.Text}");
 
                 break;
@@ -74,7 +77,7 @@ public class TelegramBotService(TelegramBotClient telegramBot,
     public Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, HandleErrorSource source,
         CancellationToken cancellationToken)
     {
-        logger.LogInformation($"Unknown error: {exception.Message}");
+        logger.LogInformation($"Unknown error:\n{exception.Message}");
         return Task.CompletedTask;
     }
 }
