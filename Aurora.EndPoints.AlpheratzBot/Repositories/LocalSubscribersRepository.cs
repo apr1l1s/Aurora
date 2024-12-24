@@ -1,4 +1,6 @@
-﻿namespace Aurora.EndPoints.BorealisBot.Services;
+﻿using Aurora.EndPoints.AlpheratzBot.Services;
+
+namespace Aurora.EndPoints.AlpheratzBot.Repositories;
 
 public interface ISubscribersRepository
 {

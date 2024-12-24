@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Aurora.EndPoints.AlpheratzBot.Repositories;
+using Microsoft.Extensions.Logging;
 using Telegram.Bot;
+using Telegram.Bot.Types;
 
-namespace Aurora.EndPoints.BorealisBot.Services;
+namespace Aurora.EndPoints.AlpheratzBot.Services;
 
 public class RandomMessageScheduler(TelegramBotClient telegramBot,
     ISubscribersRepository subscribersRepository,
@@ -10,18 +12,47 @@ public class RandomMessageScheduler(TelegramBotClient telegramBot,
 {
     private readonly Random _random = new();
 
+    protected override async Task Schedule()
+    {
+        while (true)
+        {
+            var date = DateTime.Now;
+            if (date.DayOfWeek is DayOfWeek.Sunday or DayOfWeek.Saturday)
+            {
+                await Task.Delay(3600*24);
+            }
+            if (date.Hour > 9 && date.Hour < 18)
+            {
+                await WaitDelay();
+                await OnMessage();
+            }
+        }
+    }
+
     protected override async Task OnMessage()
     {
         while (true)
         {
             await WaitDelay();
+            var date = DateTime.Now;
 
-            const string message = "\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u283f\u283f\u289b\u28cb\u28d9\u28cb\u28e9\u28ed\u28ed\u28ed\u28ed\u28cd\u28c9\u285b\u283b\u28bf\u28ff\u28ff\u28ff\u28ff \u28ff\u28ff\u28ff\u281f\u28cb\u28e5\u28f4\u28fe\u28ff\u28ff\u28ff\u2846\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u287f\u281f\u281b\u2817\u28a6\u2859\u28bf\u28ff\u28ff \u28ff\u285f\u2861\u283e\u281b\u283b\u28bf\u28ff\u28ff\u28ff\u287f\u2803\u28ff\u287f\u28ff\u283f\u281b\u2809\u2820\u2834\u28b6\u285c\u28e6\u2840\u2848\u28bf\u28ff \u287f\u2880\u28f0\u284f\u28fc\u280b\u2801\u28b2\u284c\u28a4\u28e0\u28fe\u28f7\u2844\u2884\u2820\u2876\u28fe\u2840\u2800\u28f8\u2877\u28b8\u2877\u28b9\u2808\u28ff \u2847\u2898\u28bf\u28c7\u28bb\u28e4\u28e0\u287c\u2883\u28e4\u28fe\u28ff\u28ff\u28ff\u288c\u28f7\u28c5\u2858\u283b\u283f\u289b\u28e1\u28ff\u2800\u28fe\u28a0\u28ff \u28f7\u2838\u28ee\u28ff\u28f7\u28e8\u28e5\u28f6\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u285f\u2881\u287c\u2803\u28fc\u28ff \u285f\u281b\u281b\u281b\u28ff\u281b\u281b\u28bb\u285f\u281b\u281b\u28bf\u285f\u281b\u281b\u287f\u28bb\u287f\u281b\u285b\u28bb\u28ff\u281b\u285f\u281b\u281b\u28bf \u2847\u28b8\u28ff\u2800\u28ff\u2800\u281b\u28bb\u2847\u2838\u2803\u28b8\u2847\u281b\u289b\u2847\u2818\u2803\u28bc\u28f7\u2840\u2803\u28f0\u2847\u2838\u2807\u28b8 \u2847\u28b8\u28ff\u2800\u28ff\u2800\u281b\u28bb\u2847\u28b0\u28ff\u28ff\u2847\u281b\u281b\u28c7\u28b8\u28e7\u2808\u28df\u2803\u28e0\u28ff\u2847\u28b0\u28fe\u28ff \u28ff\u28ff\u28ff\u2818\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u288b\u28ff\u2819\u28f7\u28b8\u28f7\u2800\u28ff\u28ff\u28ff \u28ff\u28ff\u28ff\u2847\u28bb\u28ff\u28ff\u28ff\u287f\u283f\u28bf\u28ff\u28ff\u28ff\u281f\u280b\u28e1\u2848\u283b\u28c7\u28b9\u28ff\u28ff\u28a0\u28ff\u28ff\u28ff \u28ff\u28ff\u28ff\u28ff\u2818\u28ff\u28ff\u28ff\u28ff\u28ef\u28fd\u28c9\u28ff\u28df\u28db\u2837\u2819\u28bf\u28f7\u28cc\u2800\u28bf\u2847\u28fc\u28ff\u28ff\u28ff \u28ff\u28ff\u28ff\u287f\u2880\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28f6\u28e4\u2859\u28bf\u2897\u28c0\u28c1\u2808\u28bb\u28ff\u28ff \u28ff\u287f\u288b\u28f4\u28ff\u28ce\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28e6\u2849\u28ef\u28ff\u28f7\u2806\u2819\u28bf \u28cf\u2800\u2808\u2827\u2821\u2809\u2819\u28bf\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u28ff\u2803\u2809\u2889\u28c1\u28c0\u28c0";
-
+            var message =
+                "\ud83d\udea8 ОПОВЕЩЕНИЕ: КУРЕНИЕ.\n\n" +
+                "\u26a0\ufe0f ВАЖНОЕ УВЕДОМЛЕНИЕ:\n\n" +
+                $"\u23f3 Работы по курению у падика начинаются в {date.Hour}:{date.Minute + 5} и будут продолжаться в течение следующих нескольких минут.\n" +
+                "Все операции с компьютером будут приостановлены до окончания курения.\n\n" +
+                "\u23f0 Будьте уверены, что мы проинформируем вас, когда процесс работы будет вновь доступен. До получения отбойного сообщения \n\n" +
+                "\ud83d\udeabРАБОТАТЬ НЕЛЬЗЯ!\ud83d\udeab\n\n" +
+                "Спасибо за понимание и сотрудничество! \ud83d\ude4f";
+            
             var subscribers = subscribersRepository.GetCollection();
             foreach (var sub in subscribers)
             {
-                await telegramBot.SendMessage(sub.ChannelId, message, messageThreadId: sub.TopicId);
+                var file = new FileInfo(
+                    "C:\\Users\\safronov.a\\RiderProjects\\Aurora\\Aurora.EndPoints.AlpheratzBot\\image.png");
+                var stream = file.OpenRead();
+                var image = InputFile.FromStream(stream);
+                await telegramBot.SendPhoto(sub.ChannelId, image, message);
                 logger.LogInformation("New message to" + sub.Title);
             }
 

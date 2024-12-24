@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Configuration;
+﻿using Aurora.EndPoints.AlpheratzBot.Repositories;
+using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 
-namespace Aurora.EndPoints.BorealisBot.Services;
+namespace Aurora.EndPoints.AlpheratzBot.Services;
 
 public record Subscriber(long ChannelId, string Title, int? TopicId = null)
 {

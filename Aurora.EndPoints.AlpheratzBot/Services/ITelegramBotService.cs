@@ -2,7 +2,7 @@
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 
-namespace Aurora.EndPoints.BorealisBot.Services;
+namespace Aurora.EndPoints.AlpheratzBot.Services;
 
 public interface ITelegramBotService
 {
