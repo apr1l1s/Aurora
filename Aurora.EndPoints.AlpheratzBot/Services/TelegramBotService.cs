@@ -1,10 +1,11 @@
-﻿using Core.Providers.Cqrs;
+using Aurora.EndPoints.BorealisBot.Services;
+using Core.Providers.Cqrs;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 
-namespace Aurora.EndPoints.BorealisBot.Services;
+namespace Aurora.EndPoints.AlpheratzBot.Services;
 
 public record Subscriber(long ChannelId, string Title, int? TopicId = null)
 {
@@ -30,11 +31,13 @@ public class TelegramBotService(TelegramBotClient telegramBot,
     public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, 
         CancellationToken cancellationToken)
     {
-        var message = update.Message;
-        if (message == null)
+        _ = Task.Run(async () =>
         {
-            return;
-        }
+            var message = update.Message;
+            if (message == null)
+            {
+                return;
+            }
 
         var command = message.Text;
 
