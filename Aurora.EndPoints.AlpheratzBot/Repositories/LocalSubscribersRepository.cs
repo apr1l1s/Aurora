@@ -1,4 +1,4 @@
-﻿using Aurora.EndPoints.AlpheratzBot.Services;
+﻿using Aurora.Data.Core.Entities;
 
 namespace Aurora.EndPoints.AlpheratzBot.Repositories;
 

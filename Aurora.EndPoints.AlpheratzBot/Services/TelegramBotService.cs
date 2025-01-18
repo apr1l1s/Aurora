@@ -7,15 +7,8 @@ using Telegram.Bot.Types;
 
 namespace Aurora.EndPoints.AlpheratzBot.Services;
 
-public record Subscriber(long ChannelId, string Title, int? TopicId = null)
-{
-    public Subscriber(Message message)
-        : this(message.Chat.Id, message.Chat.Title, message.MessageThreadId)
-    {
-    }
-}
-
-public class TelegramBotService(TelegramBotClient telegramBot,
+public class TelegramBotService(
+    TelegramBotClient telegramBot,
     IUseCaseDispatcher dispatcher,
     ILogger<TelegramBotService> logger)
     : IUpdateHandler, ITelegramBotService
@@ -23,15 +16,14 @@ public class TelegramBotService(TelegramBotClient telegramBot,
     public void StartBotAsync(string token)
     {
         telegramBot.StartReceiving(
-            updateHandler:HandleUpdateAsync,
+            updateHandler: HandleUpdateAsync,
             errorHandler: HandleErrorAsync);
         logger.LogInformation("Bot is receiving messages.");
     }
 
-    public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, 
+    public Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
         CancellationToken cancellationToken)
-    {
-        _ = Task.Run(async () =>
+        => Task.Run(async () =>
         {
             var message = update.Message;
             if (message == null)
@@ -39,10 +31,10 @@ public class TelegramBotService(TelegramBotClient telegramBot,
                 return;
             }
 
-        var command = message.Text;
+            var command = message.Text;
 
-        await dispatcher.DispatchAsync(new CommandUseCase(command, message), cancellationToken);
-    }
+            await dispatcher.DispatchAsync(new CommandUseCase(command, message), cancellationToken);
+        }, cancellationToken);
 
     public Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, HandleErrorSource source,
         CancellationToken cancellationToken)

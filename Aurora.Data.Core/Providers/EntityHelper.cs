@@ -1,4 +1,4 @@
-﻿namespace Autota.Data.Core.Providers;
+﻿namespace Aurora.Data.Core.Providers;
 
 public static class EntityHelper<T> where T : struct, Enum
 {

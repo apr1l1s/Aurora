@@ -1,4 +1,6 @@
-﻿using Core.Providers.Cqrs;
+﻿using Aurora.EndPoints.AlpheratzBot.Repositories;
+using Aurora.Data.Core.Entities;
+using Core.Providers.Cqrs;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Types;
