@@ -2,13 +2,10 @@
 using Aurora.EndPoints.SerpensBot.Helpers;
 using Aurora.EndPoints.SerpensBot.Services.TelegramBotService;
 using Zefirrat.YandexGpt.Abstractions;
-using Zefirrat.YandexGpt.Prompter;
+using Microsoft.Extensions.Logging;
 
 namespace Aurora.EndPoints.SerpensBot.Services.NotificationService;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
+
 
 public class NotificationService(ILogger<NotificationService> logger, 
     ITelegramService telegramService, 
@@ -32,11 +29,11 @@ public class NotificationService(ILogger<NotificationService> logger,
 
                 // Рандомизация времени от 1 до 1,5 часов
                 var random = new Random();
-                var delayMinutes = random.Next(10, 20); // От 60 до 90 минут
+                var delayMinutes = random.Next(60, 90); // От 60 до 90 минут
                 logger.LogInformation($"Следующая отправка через {delayMinutes} минут.");
 
                 // Ждём заданное время
-                await Task.Delay(TimeSpan.FromSeconds(delayMinutes), _cancellationTokenSource.Token);
+                await Task.Delay(TimeSpan.FromMinutes(delayMinutes), _cancellationTokenSource.Token);
 
                 // Отправляем уведомление
                 await SendTelegramNotification();
