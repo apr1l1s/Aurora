@@ -1,6 +1,6 @@
-﻿using Aurora.EndPoints.AlpheratzBot.Services;
+﻿using Aurora.EndPoints.SerpensBot.Services.SubscribersService;
 
-namespace Aurora.EndPoints.AlpheratzBot.Repositories;
+namespace Aurora.EndPoints.SerpensBot.Repositories;
 
 public interface ISubscribersRepository
 {

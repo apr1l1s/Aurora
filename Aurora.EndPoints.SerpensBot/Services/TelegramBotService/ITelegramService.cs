@@ -2,11 +2,13 @@
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 
-namespace Aurora.EndPoints.AlpheratzBot.Services;
+namespace Aurora.EndPoints.SerpensBot.Services.TelegramBotService;
 
-public interface ITelegramBotService
+public interface ITelegramService
 {
-    void StartBotAsync(string token);
+    void StartReceiving();
+
+    public Task SendMessageAsync(string message, CancellationToken cancellationToken = default);
 
     Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken);
 

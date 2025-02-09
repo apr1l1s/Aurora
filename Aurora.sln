@@ -16,14 +16,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Data.Core.Tests", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Domain.Core.Tests", "Aurora.Domain.Core.Tests\Aurora.Domain.Core.Tests.csproj", "{D6AC97AC-DAA0-4016-8632-6087B9512E04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.EndPoints.BetelgeuseApi", "Aurora.EndPoints.BetelgeuseApi\Aurora.EndPoints.BetelgeuseApi.csproj", "{B9D98993-F8DA-4195-963B-7CB819019620}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{365445BB-1465-42F7-9124-E752614299CD}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.EndPoints.AlpheratzBot", "Aurora.EndPoints.AlpheratzBot\Aurora.EndPoints.AlpheratzBot.csproj", "{5C7D0DBE-A920-44BD-8C22-290F22DBC12A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.EndPoints.SerpensBot", "Aurora.EndPoints.SerpensBot\Aurora.EndPoints.SerpensBot.csproj", "{F176F088-0070-4C40-B654-1EF0005CB6C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,8 +33,7 @@ Global
 		{96A455C6-7D82-4C6C-BCA8-5DFB4ED0C9B5} = {867AFECA-CC0A-402B-8F3E-B56DCB85DEE5}
 		{52BE62C7-91BC-4447-913D-0E19701E5132} = {CECA1C6F-9BD1-42DC-8178-CE29C8F35AD3}
 		{D6AC97AC-DAA0-4016-8632-6087B9512E04} = {CECA1C6F-9BD1-42DC-8178-CE29C8F35AD3}
-		{B9D98993-F8DA-4195-963B-7CB819019620} = {2D0CCCC7-93B2-4DE6-9599-2D70F8A28538}
-		{5C7D0DBE-A920-44BD-8C22-290F22DBC12A} = {2D0CCCC7-93B2-4DE6-9599-2D70F8A28538}
+		{F176F088-0070-4C40-B654-1EF0005CB6C2} = {2D0CCCC7-93B2-4DE6-9599-2D70F8A28538}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5F73E119-E707-450E-BE00-B70DA8319F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -55,13 +52,9 @@ Global
 		{D6AC97AC-DAA0-4016-8632-6087B9512E04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6AC97AC-DAA0-4016-8632-6087B9512E04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6AC97AC-DAA0-4016-8632-6087B9512E04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9D98993-F8DA-4195-963B-7CB819019620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9D98993-F8DA-4195-963B-7CB819019620}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9D98993-F8DA-4195-963B-7CB819019620}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9D98993-F8DA-4195-963B-7CB819019620}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C7D0DBE-A920-44BD-8C22-290F22DBC12A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C7D0DBE-A920-44BD-8C22-290F22DBC12A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C7D0DBE-A920-44BD-8C22-290F22DBC12A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C7D0DBE-A920-44BD-8C22-290F22DBC12A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F176F088-0070-4C40-B654-1EF0005CB6C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F176F088-0070-4C40-B654-1EF0005CB6C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F176F088-0070-4C40-B654-1EF0005CB6C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F176F088-0070-4C40-B654-1EF0005CB6C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

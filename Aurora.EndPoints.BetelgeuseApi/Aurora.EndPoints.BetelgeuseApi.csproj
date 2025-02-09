@@ -9,6 +9,16 @@
 
     <ItemGroup>
       <PackageReference Include="bootstrap" Version="5.3.3" />
+      <PackageReference Include="Swagger-Net" Version="8.5.12.1" />
+      <PackageReference Include="Telegram.Bot" Version="22.3.0" />
+      <PackageReference Include="Zefirrat.YandexGpt.Abstractions" Version="1.1.0-pre2" />
+      <PackageReference Include="Zefirrat.YandexGpt.Api.Client" Version="1.1.0-pre2" />
+      <PackageReference Include="Zefirrat.YandexGpt.Api.Contracts" Version="1.1.0-pre2" />
+      <PackageReference Include="Zefirrat.YandexGpt.AspNet.Di" Version="1.1.0-pre2" />
+      <PackageReference Include="Zefirrat.YandexGpt.Base" Version="1.1.0-pre2" />
+      <PackageReference Include="Zefirrat.YandexGpt.Chatter" Version="1.1.0-pre2" />
+      <PackageReference Include="Zefirrat.YandexGpt.Prompter" Version="1.1.0-pre2" />
+      <PackageReference Include="Zefirrat.YandexGpt.Summarizer" Version="1.1.0-pre2" />
     </ItemGroup>
 
 </Project>
