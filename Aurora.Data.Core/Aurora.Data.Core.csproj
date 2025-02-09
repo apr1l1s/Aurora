@@ -4,7 +4,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>Autota.Data.Core</RootNamespace>
+        <RootNamespace>Aurora.Data.Core</RootNamespace>
         <LangVersion>12</LangVersion>
     </PropertyGroup>
 
@@ -12,6 +12,10 @@
       <Folder Include="Entities\Configurations\" />
       <Folder Include="Entities\Database\Models\" />
       <Folder Include="Repositories\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Telegram.Bot" Version="22.2.0" />
     </ItemGroup>
 
 </Project>

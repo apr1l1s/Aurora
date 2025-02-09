@@ -1,4 +1,4 @@
-﻿using Aurora.EndPoints.SerpensBot.Services.SubscribersService;
+using Aurora.EndPoints.SerpensBot.Services.SubscribersService;
 
 namespace Aurora.EndPoints.SerpensBot.Repositories;
 
