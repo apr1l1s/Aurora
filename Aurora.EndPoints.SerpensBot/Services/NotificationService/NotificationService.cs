@@ -20,12 +20,15 @@ public class NotificationService(ILogger<NotificationService> logger,
             while (!_cancellationTokenSource.IsCancellationRequested)
             {
                 // Проверяем, является ли сегодня рабочим днем
-                if (!CalendarHelper.IsWorkingDay(DateTime.Now.Date))
+                if (!CalendarHelper.IsWorkingDay(DateTime.Now))
                 {
                     logger.LogInformation("Сегодня не рабочий день. Задача пропущена.");
-                    await Task.Delay(TimeSpan.FromHours(24), _cancellationTokenSource.Token);
+                    await Task.Delay(TimeSpan.FromHours(1), _cancellationTokenSource.Token);
                     continue;
                 }
+
+                // Отправляем уведомление
+                await SendTelegramNotification();
 
                 // Рандомизация времени от 1 до 1,5 часов
                 var random = new Random();
@@ -35,8 +38,6 @@ public class NotificationService(ILogger<NotificationService> logger,
                 // Ждём заданное время
                 await Task.Delay(TimeSpan.FromMinutes(delayMinutes), _cancellationTokenSource.Token);
 
-                // Отправляем уведомление
-                await SendTelegramNotification();
                 logger.LogInformation("Уведомление отправлено.");
             }
         }
@@ -81,9 +82,9 @@ public class NotificationService(ILogger<NotificationService> logger,
                     "Так же после сообщения добавь загадку и оставь ответ в виде скрытого текста. ");
                 break;
         }
-        
-        sb.AppendLine(
-            "Текст должен быть красив, уникален и смысл в том, что надо покурить, проветрится всем участником беседы.");
+
+        sb.AppendLine("Текст должен быть красив, уникален и смысл в том, что надо покурить, " +
+                      "проветриться всем участником беседы.");
 
         string? response = null;
         try

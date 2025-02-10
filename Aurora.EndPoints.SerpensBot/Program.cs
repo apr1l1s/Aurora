@@ -43,6 +43,7 @@ class Program
 
     private static IServiceProvider AddCoreServices()
         => new ServiceCollection()
+            .AddLogging()
             .AddSingleton<ISubscribersRepository, LocalSubscribersRepository>()
             .AddScoped<ICommandService, CommandService>()
             .AddSingleton<ITelegramService, TelegramService>()
