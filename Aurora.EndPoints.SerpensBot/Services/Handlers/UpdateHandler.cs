@@ -53,15 +53,15 @@ public partial class UpdateHandler(ITelegramBotClient bot, ILogger<UpdateHandler
         var sentMessage = await (messageText.Split(' ')[0] switch
         {
             "/alert" => SendAlert(msg),
-            "/photo" => SendPhoto(msg),
-            "/inline_buttons" => SendInlineKeyboard(msg),
-            "/keyboard" => SendReplyKeyboard(msg),
-            "/remove" => RemoveKeyboard(msg),
-            "/request" => RequestContactAndLocation(msg),
-            "/inline_mode" => StartInlineQuery(msg),
+            //"/photo" => SendPhoto(msg),
+            //"/inline_buttons" => SendInlineKeyboard(msg),
+            //"/keyboard" => SendReplyKeyboard(msg),
+            //"/remove" => RemoveKeyboard(msg),
+            //"/request" => RequestContactAndLocation(msg),
+            //"/inline_mode" => StartInlineQuery(msg),
             "/poll" => SendPoll(msg),
-            "/poll_anonymous" => SendAnonymousPoll(msg),
-            "/throw" => FailingHandler(msg),
+            //"/poll_anonymous" => SendAnonymousPoll(msg),
+            //"/throw" => FailingHandler(msg),
             "/menu" => Usage(msg)
         });
 
@@ -70,19 +70,26 @@ public partial class UpdateHandler(ITelegramBotClient bot, ILogger<UpdateHandler
 
     async Task<Message> Usage(Message msg)
     {
-        const string usage = """
-                <b><u>Bot menu</u></b>:
-                /photo          - send a photo
-                /inline_buttons - send inline buttons
-                /keyboard       - send keyboard buttons
-                /remove         - remove keyboard buttons
-                /request        - request location or contact
-                /inline_mode    - send inline-mode results list
-                /poll           - send a poll
-                /poll_anonymous - send an anonymous poll
-                /throw          - what happens if handler fails
-            """;
-        return await bot.SendMessage(msg.Chat, usage, parseMode: ParseMode.Html, replyMarkup: new ReplyKeyboardRemove());
+        var sb = new StringBuilder();
+        sb.AppendLine("<b><u>Bot menu</u></b>:");
+        sb.AppendLine("/alert        - send alert");
+        sb.AppendLine("/poll         - send poll");
+        sb.AppendLine("/menu         - send menu");
+
+        // const string usage = """
+        //         <b><u>Bot menu</u></b>:
+        //         /alert          - send alert
+        //         /photo          - send a photo
+        //         /inline_buttons - send inline buttons
+        //         /keyboard       - send keyboard buttons
+        //         /remove         - remove keyboard buttons
+        //         /request        - request location or contact
+        //         /inline_mode    - send inline-mode results list
+        //         /poll           - send a poll
+        //         /poll_anonymous - send an anonymous poll
+        //         /throw          - what happens if handler fails
+        //     """;
+        return await bot.SendMessage(msg.Chat, sb.ToString(), parseMode: ParseMode.Html, replyMarkup: new ReplyKeyboardRemove());
     }
 
     async Task<Message> RequestContactAndLocation(Message msg)
