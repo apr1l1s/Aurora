@@ -1,13 +1,16 @@
-﻿using Aurora.EndPoints.SerpensBot.Services.SubscribersService;
+﻿using Aurora.EndPoints.SerpensBot.Helpers;
+using Aurora.EndPoints.SerpensBot.Services.SubscribersService;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Zefirrat.YandexGpt.Prompter;
 using ISubscribersRepository = Aurora.EndPoints.SerpensBot.Repositories.ISubscribersRepository;
 
 namespace Aurora.EndPoints.SerpensBot.Services.CommandService;
 
 
 public class CommandService(ISubscribersRepository subscribersRepository,
+    YaPrompter prompter,
     ILogger<CommandService> logger)
     : ICommandService
 {
@@ -31,7 +34,6 @@ public class CommandService(ISubscribersRepository subscribersRepository,
                         messageThreadId: message.MessageThreadId, cancellationToken: cancellationToken);
                     logger.LogInformation($"New subscriber: {message.Chat.Id}" + (message.MessageThreadId.HasValue ? message.MessageThreadId.Value.ToString() : ""));
                 }
-
                 break;
 
             case "/unsub":
@@ -42,7 +44,6 @@ public class CommandService(ISubscribersRepository subscribersRepository,
                         messageThreadId: message.MessageThreadId, cancellationToken: cancellationToken);
                     logger.LogInformation($"Unsubscribed: {message.Chat.Id}");
                 }
-
                 break;
 
             case "/list":
@@ -55,7 +56,10 @@ public class CommandService(ISubscribersRepository subscribersRepository,
 
                 await telegramBot.SendMessage(message.Chat.Id, response, messageThreadId: message.MessageThreadId,
                     cancellationToken: cancellationToken);
+                break;
 
+            case "/alert":
+                await SendTelegramNotification(telegramBot,message.Chat.Id, message.MessageThreadId);
                 break;
 
             default:
@@ -68,5 +72,23 @@ public class CommandService(ISubscribersRepository subscribersRepository,
 
                 break;
         }
+    }
+
+    private async Task SendTelegramNotification(TelegramBotClient telegramBot, ChatId chatId, int? topicId)
+    {
+        // Ваш код для отправки Telegram-сообщения
+        logger.LogInformation("Отправка уведомления...");
+
+        string? response = null;
+        try
+        {
+            response = await prompter.SendAsync(PromptHelper.GetRandomPrompt());
+        }
+        catch (Exception ex)
+        {
+            logger.LogInformation(ex.Message);
+        }
+        logger.LogInformation(response ?? "Пусто");
+        await telegramBot.SendMessage(chatId, response ?? "Алиса отдыхает, ебальник завали и иди курить", messageThreadId:topicId);
     }
 }

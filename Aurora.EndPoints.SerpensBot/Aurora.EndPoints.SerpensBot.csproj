@@ -20,4 +20,8 @@
       <PackageReference Include="Zefirrat.YandexGpt.Prompter" Version="1.1.0-pre2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Files\" />
+    </ItemGroup>
+
 </Project>

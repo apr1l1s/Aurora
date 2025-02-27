@@ -1,9 +1,15 @@
 ﻿using Aurora.EndPoints.SerpensBot.Repositories;
+using Aurora.EndPoints.SerpensBot.Services;
 using Aurora.EndPoints.SerpensBot.Services.CommandService;
 using Aurora.EndPoints.SerpensBot.Services.NotificationService;
 using Aurora.EndPoints.SerpensBot.Services.TelegramBotService;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Options;
+using Telegram.Bot;
 using Zefirrat.YandexGpt.AspNet.Di;
 
 namespace Aurora.EndPoints.SerpensBot;
@@ -12,42 +18,32 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        var services = AddCoreServices();
-        services.GetService<ITelegramService>()!.StartReceiving();
-        // Создаем экземпляр сервиса
-        var notificationService = services.GetService<NotificationService>()!;
-
-        // Запускаем задачу в фоновом режиме
-        var task = notificationService.StartAsync();
-
-        // Ждём сигнал остановки от пользователя
-        await Task.Run(() =>
-        {
-            while (true)
+        IHost host = Host.CreateDefaultBuilder(args)
+            .ConfigureServices((context, services) =>
             {
-                if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.C && Console.NumberLock == false)
-                {
-                    notificationService.Stop(); // Отправляем сигнал остановки
-                    break;
-                }
-            }
-        });
+                services.AddHttpClient("telegram_bot_client").RemoveAllLoggers()
+                    .AddTypedClient<ITelegramBotClient>((httpClient, sp) =>
+                    {
+                        TelegramBotClientOptions options = new("7877107836:AAHMpLMEl_KfWog0jrx-qgKrw2jQFHkB6L8");
+                        return new TelegramBotClient(options, httpClient);
+                    });
 
-        await task;
+                services
+                    .AddSingleton<ISubscribersRepository, LocalSubscribersRepository>()
+                    .AddScoped<ICommandService, CommandService>()
+                    //.AddHostedService<NotificationService>()
+                    .AddScoped<UpdateHandler>()
+                    .AddScoped<ReceiverService>()
+                    .AddHostedService<PollingService>()
+                    .AddYandexGpt(AddConfiguration())
+                    .BuildServiceProvider();
+            }).Build();
+
+        await host.RunAsync();
     }
 
     private static IConfiguration AddConfiguration()
     => new ConfigurationManager()
         .AddJsonFile(Directory.GetCurrentDirectory() + @"..\..\..\..\settings.json")
         .Build();
-
-    private static IServiceProvider AddCoreServices()
-        => new ServiceCollection()
-            .AddLogging()
-            .AddSingleton<ISubscribersRepository, LocalSubscribersRepository>()
-            .AddScoped<ICommandService, CommandService>()
-            .AddSingleton<ITelegramService, TelegramService>()
-            .AddScoped<NotificationService>()
-            .AddYandexGpt(AddConfiguration())
-            .BuildServiceProvider();
 }
