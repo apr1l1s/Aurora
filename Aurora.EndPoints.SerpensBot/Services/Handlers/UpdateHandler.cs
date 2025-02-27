@@ -62,11 +62,15 @@ public partial class UpdateHandler(ITelegramBotClient bot, ILogger<UpdateHandler
             "/poll" => SendPoll(msg),
             //"/poll_anonymous" => SendAnonymousPoll(msg),
             //"/throw" => FailingHandler(msg),
+            "/git" => SendGit(msg),
             "/menu" => Usage(msg)
         });
 
         logger.LogInformation("The message was sent with id: {SentMessageId}", sentMessage.Id);
     }
+
+    async Task<Message> SendGit(Message msg)
+        => await bot.SendMessage(msg.Chat, "https://github.com/apr1l1s/Aurora");
 
     async Task<Message> Usage(Message msg)
     {
@@ -74,6 +78,7 @@ public partial class UpdateHandler(ITelegramBotClient bot, ILogger<UpdateHandler
         sb.AppendLine("<b><u>Bot menu</u></b>:");
         sb.AppendLine("/alert        - send alert");
         sb.AppendLine("/poll         - send poll");
+        sb.AppendLine("/git         - send git project link");
         sb.AppendLine("/menu         - send menu");
 
         // const string usage = """
