@@ -50,7 +50,13 @@ public partial class UpdateHandler(ITelegramBotClient bot, ILogger<UpdateHandler
         if (msg.Text is not { } messageText)
             return;
 
-        var sentMessage = await (messageText.Split(' ')[0] switch
+        var command = messageText.Split(' ', '@');
+        if (command.Length > 1 && command[1] != "hydra_bank_alert_bot")
+        {
+            return;
+        }
+
+        var sentMessage = await (command[0] switch
         {
             "/alert" => SendAlert(msg),
             //"/photo" => SendPhoto(msg),
@@ -75,7 +81,7 @@ public partial class UpdateHandler(ITelegramBotClient bot, ILogger<UpdateHandler
     async Task<Message> Usage(Message msg)
     {
         var sb = new StringBuilder();
-        sb.AppendLine("<b><u>Bot menu</u></b>:");
+        sb.AppendLine("Bot menu:");
         sb.AppendLine("/alert        - send alert");
         sb.AppendLine("/poll         - send poll");
         sb.AppendLine("/git         - send git project link");
@@ -94,7 +100,7 @@ public partial class UpdateHandler(ITelegramBotClient bot, ILogger<UpdateHandler
         //         /poll_anonymous - send an anonymous poll
         //         /throw          - what happens if handler fails
         //     """;
-        return await bot.SendMessage(msg.Chat, sb.ToString(), parseMode: ParseMode.Html, replyMarkup: new ReplyKeyboardRemove());
+        return await bot.SendMessage(msg.Chat, sb.ToString(), replyMarkup: new ReplyKeyboardRemove());
     }
 
     async Task<Message> RequestContactAndLocation(Message msg)
