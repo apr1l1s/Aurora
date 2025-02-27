@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Aurora.EndPoints.SerpensBot.Services.CommandService;
+namespace Aurora.EndPoints.SerpensBot.Services.BaseServices;
 
 public abstract class PollingServiceBase<TReceiverService>(IServiceProvider serviceProvider, ILogger<PollingServiceBase<TReceiverService>> logger)
     : BackgroundService where TReceiverService : IReceiverService
@@ -36,6 +36,3 @@ public abstract class PollingServiceBase<TReceiverService>(IServiceProvider serv
         }
     }
 }
-
-public class PollingService(IServiceProvider serviceProvider, ILogger<PollingService> logger)
-    : PollingServiceBase<ReceiverService>(serviceProvider, logger);

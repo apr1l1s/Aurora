@@ -4,10 +4,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoints", "EndPoints", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CECA1C6F-9BD1-42DC-8178-CE29C8F35AD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Data.Core.Tests", "Aurora.Data.Core.Tests\Aurora.Data.Core.Tests.csproj", "{52BE62C7-91BC-4447-913D-0E19701E5132}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Domain.Core.Tests", "Aurora.Domain.Core.Tests\Aurora.Domain.Core.Tests.csproj", "{D6AC97AC-DAA0-4016-8632-6087B9512E04}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{365445BB-1465-42F7-9124-E752614299CD}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
@@ -15,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.EndPoints.SerpensBot", "Aurora.EndPoints.SerpensBot\Aurora.EndPoints.SerpensBot.csproj", "{F176F088-0070-4C40-B654-1EF0005CB6C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.EndPoints.SerpentsBot.Tests", "Aurora.EndPoints.SerpentsBot.Tests\Aurora.EndPoints.SerpentsBot.Tests.csproj", "{4851CCE4-3D85-4E8C-85E3-B46B3653AFCF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aurora.Domain", "Aurora.Domain", "{576CECB6-77CF-47E5-BBAE-CE4421DBD20E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,27 +19,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{52BE62C7-91BC-4447-913D-0E19701E5132} = {CECA1C6F-9BD1-42DC-8178-CE29C8F35AD3}
-		{D6AC97AC-DAA0-4016-8632-6087B9512E04} = {CECA1C6F-9BD1-42DC-8178-CE29C8F35AD3}
 		{F176F088-0070-4C40-B654-1EF0005CB6C2} = {2D0CCCC7-93B2-4DE6-9599-2D70F8A28538}
-		{4851CCE4-3D85-4E8C-85E3-B46B3653AFCF} = {CECA1C6F-9BD1-42DC-8178-CE29C8F35AD3}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{52BE62C7-91BC-4447-913D-0E19701E5132}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52BE62C7-91BC-4447-913D-0E19701E5132}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52BE62C7-91BC-4447-913D-0E19701E5132}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52BE62C7-91BC-4447-913D-0E19701E5132}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D6AC97AC-DAA0-4016-8632-6087B9512E04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6AC97AC-DAA0-4016-8632-6087B9512E04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6AC97AC-DAA0-4016-8632-6087B9512E04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6AC97AC-DAA0-4016-8632-6087B9512E04}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F176F088-0070-4C40-B654-1EF0005CB6C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F176F088-0070-4C40-B654-1EF0005CB6C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F176F088-0070-4C40-B654-1EF0005CB6C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F176F088-0070-4C40-B654-1EF0005CB6C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4851CCE4-3D85-4E8C-85E3-B46B3653AFCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4851CCE4-3D85-4E8C-85E3-B46B3653AFCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4851CCE4-3D85-4E8C-85E3-B46B3653AFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4851CCE4-3D85-4E8C-85E3-B46B3653AFCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

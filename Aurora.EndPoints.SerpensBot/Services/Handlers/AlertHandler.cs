@@ -1,10 +1,24 @@
 ﻿using System.Text;
+using Telegram.Bot;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
-namespace Aurora.EndPoints.SerpensBot.Helpers;
+namespace Aurora.EndPoints.SerpensBot.Services.Handlers;
 
-public static class PromptHelper
+public partial class UpdateHandler
 {
-    public static string GetRandomPrompt()
+    async Task<Message> SendAlert(Message msg)
+    {
+        await bot.SendChatAction(msg.Chat, ChatAction.UploadPhoto);
+        await using var fileStream = new FileStream("../../../Files/nehochyn.jpg", FileMode.Open, FileAccess.Read);
+        var prompt = GetRandomPrompt();
+        var response = await prompter.SendAsync(prompt) ?? "Алиса сдохла";
+
+        await bot.SendPhoto(msg.Chat, fileStream, caption: response);
+        return await SendPoll(msg);
+    }
+
+    static string GetRandomPrompt()
     {
         var rand = new Random();
         const int min = 1000;

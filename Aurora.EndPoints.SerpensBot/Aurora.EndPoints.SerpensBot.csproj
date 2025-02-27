@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <ApplicationIcon>hydra.ico</ApplicationIcon>
         <OutputType>Exe</OutputType>
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -21,7 +22,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Files\" />
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <Folder Include="Files\"/>
+        <Folder Include="Repositories\"/>
     </ItemGroup>
 
 </Project>

@@ -1,10 +1,8 @@
-﻿using Aurora.EndPoints.SerpensBot.Services.CommandService;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 
-
-namespace Aurora.EndPoints.SerpensBot.Services;
+namespace Aurora.EndPoints.SerpensBot.Services.BaseServices;
 
 public abstract class ReceiverServiceBase<TUpdateHandler>(ITelegramBotClient botClient, TUpdateHandler updateHandler, ILogger<ReceiverServiceBase<TUpdateHandler>> logger)
     : IReceiverService where TUpdateHandler : IUpdateHandler
@@ -22,11 +20,3 @@ public abstract class ReceiverServiceBase<TUpdateHandler>(ITelegramBotClient bot
         await botClient.ReceiveAsync(updateHandler, receiverOptions, stoppingToken);
     }
 }
-
-public interface IReceiverService
-{
-    Task ReceiveAsync(CancellationToken stoppingToken);
-}
-
-public class ReceiverService(ITelegramBotClient botClient, UpdateHandler updateHandler, ILogger<ReceiverServiceBase<UpdateHandler>> logger)
-    : ReceiverServiceBase<UpdateHandler>(botClient, updateHandler, logger);
