@@ -7,29 +7,32 @@ namespace Aurora.EndPoints.SerpensBot.Services.Handlers;
 
 public partial class UpdateHandler
 {
-    async Task<Message> SendAlert(Message msg)
+    private async Task<Message> SendAlert(Message msg)
     {
         await bot.SendChatAction(msg.Chat, ChatAction.UploadPhoto);
         await using var fileStream = new FileStream("../../../Files/nehochyn.jpg", FileMode.Open, FileAccess.Read);
         var prompt = GetRandomPrompt();
         var response = await prompter.SendAsync(prompt) ?? "Алиса сдохла";
 
-        await bot.SendPhoto(msg.Chat, fileStream, caption: response);
+        await bot.SendPhoto(msg.Chat, fileStream, caption: response, messageThreadId: msg.MessageThreadId);
         return await SendPoll(msg);
     }
 
-    static string GetRandomPrompt()
+    private async Task<Message> SendGit(Message msg)
+        => await bot.SendMessage(msg.Chat, "https://github.com/apr1l1s/Aurora", messageThreadId: msg.MessageThreadId);
+
+    private static string GetRandomPrompt()
     {
         var rand = new Random();
         const int min = 1000;
         const int max = 3000;
-        
+
         var sb = new StringBuilder();
-        
+
         sb.AppendLine("Можешь написать текст, " +
                       "который будет использован для уведомления о том, что мы с коллегами пойдем курить. ");
         sb.AppendLine($"Текст должен быть длинной где то {rand.Next(min, max)} символов и содержать много смайликов. ");
-        
+
         switch (rand.Next(min, max))
         {
             case < 1500:
