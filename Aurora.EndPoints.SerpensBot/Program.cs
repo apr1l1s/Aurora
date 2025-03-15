@@ -33,7 +33,7 @@ internal class Program
             })
             .ConfigureServices((context, services) =>
             {
-                var tToken = context.Configuration.GetSection("TelegramBotOptions:Token").Get<string>();
+                var tToken = "7877107836:AAHMpLMEl_KfWog0jrx-qgKrw2jQFHkB6L8";
 
                 services.AddHttpClient("telegram_bot_client").RemoveAllLoggers()
                     .AddTypedClient<ITelegramBotClient>((httpClient, _) =>
@@ -43,7 +43,6 @@ internal class Program
                     .AddScoped<UpdateHandler>()
                     .AddScoped<ReceiverService>()
                     .AddHostedService<PollingService>()
-                    .AddYandexGpt(context.Configuration)
                     .BuildServiceProvider();
             })
             .ConfigureLogging(logging => logging.ClearProviders().AddConsole().AddDebug()).Build()
