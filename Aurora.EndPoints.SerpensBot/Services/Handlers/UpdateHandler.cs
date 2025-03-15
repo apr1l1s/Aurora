@@ -61,6 +61,7 @@ public partial class UpdateHandler(ITelegramBotClient bot, ILogger<UpdateHandler
         var sentMessage = await (command.TelegramCommandType switch
         {
             TelegramCommandType.ReputationChange => ChangeReputationStatus(msg, command),
+            TelegramCommandType.Show => ShowReputation(msg),
             TelegramCommandType.Alert => SendAlert(msg),
             //"/photo" => SendPhoto(msg),
             //"/inline_buttons" => SendInlineKeyboard(msg),

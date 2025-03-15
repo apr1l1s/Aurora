@@ -1,0 +1,35 @@
+﻿version: '3.7'
+
+services:
+  aurora.endpoints.serpensbot:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+    image: aurora.endpoints.serpensbot:dev
+    container_name: serpensbot
+    build:
+          context: .
+          dockerfile: Aurora.EndPoints.SerpensBot/Dockerfile
+    ports:
+      - "6000:6000"
+    restart: unless-stopped
+    depends_on:
+      - aurora.databases.postgres
+    networks:
+      - aurora-network
+  
+  aurora.databases.postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - aurora-network
+
+networks:
+  aurora-network:
+    driver: bridge

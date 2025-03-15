@@ -6,7 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CECA1C6F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{365445BB-1465-42F7-9124-E752614299CD}"
 	ProjectSection(SolutionItems) = preProject
-		compose.yaml = compose.yaml
+		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.EndPoints.SerpensBot", "Aurora.EndPoints.SerpensBot\Aurora.EndPoints.SerpensBot.csproj", "{F176F088-0070-4C40-B654-1EF0005CB6C2}"

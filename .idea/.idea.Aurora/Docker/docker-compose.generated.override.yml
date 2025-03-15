@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.7"
+services:
+  aurora.endpoints.serpensbot:
+    build:
+      context: "C:\\Users\\safronov.a\\RiderProjects\\Aurora"
+      dockerfile: "Aurora.EndPoints.SerpensBot/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/Aurora.EndPoints.SerpensBot.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "aurora.endpoints.serpensbot:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\safronov.a\\RiderProjects\\Aurora\\Aurora.EndPoints.SerpensBot:/app:rw"
+    - "C:\\Users\\safronov.a\\RiderProjects\\Aurora:/src:rw"
+    - "C:\\Users\\safronov.a\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"

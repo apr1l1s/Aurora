@@ -10,12 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
       <PackageReference Include="Telegram.Bot" Version="22.3.0" />
       <PackageReference Include="Zefirrat.YandexGpt.AspNet.Di" Version="1.1.0-pre2" />
       <PackageReference Include="Zefirrat.YandexGpt.Prompter" Version="1.1.0-pre2" />
@@ -26,11 +21,16 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <Folder Include="Files\"/>
-        <Folder Include="Repositories\"/>
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Aurora.Domain.Core\Aurora.Domain.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

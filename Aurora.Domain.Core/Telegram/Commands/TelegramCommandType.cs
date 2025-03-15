@@ -13,5 +13,7 @@ public enum TelegramCommandType
 
     Menu,
 
-    Other
+    Other,
+
+    Show
 }

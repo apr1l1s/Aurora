@@ -6,22 +6,26 @@ public class TelegramCommand
 {
     public TelegramCommandType TelegramCommandType { get; }
 
-    public string[] PoolVariants { get; init; }
-    
+    public string[] PoolVariants { get; }
+
     public bool ReputationStatus { get; }
-    
+
     public int ReputationValue { get; }
-    
+
     public bool IsPoll => TelegramCommandType == TelegramCommandType.Poll;
-    
+
     public bool IsDirectMessage { get; }
+
+    public bool IsReply { get; }
+
+    public long? Author { get; }
 
     public TelegramCommand(string commandText)
     {
-        var kimStatusRegex = new Regex(@"^(\+|\-)+(\w*)*$");
-        var commandRegex = new Regex(@"^\/(user|alert|poll|git|menu)(@hydra_bank_alert_bot)? *$");
+        var kimStatusRegex = new Regex(@"^(\+|\-){1}(\d+){0,4}$");
+        var commandRegex = new Regex(@"^\/(user|alert|poll|git|menu|show)(@hydra_bank_alert_bot)? *$");
         var pollRegex = new Regex(@"^\/poll(@\w+)?\s+\[([^\]]+)\]\s+({[^}]+}\s*){1,5}$");
-        
+
         var kimStatusMatch = kimStatusRegex.Match(commandText);
         if (kimStatusMatch.Success)
         {
@@ -29,7 +33,6 @@ public class TelegramCommand
             ReputationValue = int.TryParse(kimStatusMatch.Groups[2].Value, null, out int kimValue) ? kimValue : 1;
         }
 
-        //Проверить, что это команда
         var commandMatch = commandRegex.Match(commandText);
         if (commandMatch.Success)
         {
@@ -41,6 +44,7 @@ public class TelegramCommand
                 "git" => TelegramCommandType.Git,
                 "poll" => TelegramCommandType.Poll,
                 "menu" => TelegramCommandType.Menu,
+                "show" => TelegramCommandType.Show,
                 _ => TelegramCommandType.Other
             };
         }
@@ -62,7 +66,8 @@ public class TelegramCommand
 
         if (TelegramCommandType == TelegramCommandType.Other)
         {
-            TelegramCommandType = ReputationValue == 0 ? TelegramCommandType.Other : TelegramCommandType.ReputationChange;
+            TelegramCommandType =
+                ReputationValue == 0 ? TelegramCommandType.Other : TelegramCommandType.ReputationChange;
         }
     }
 }

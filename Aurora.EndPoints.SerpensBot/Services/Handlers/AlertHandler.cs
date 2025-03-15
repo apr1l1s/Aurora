@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Aurora.Domain.Core.Context;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -10,11 +11,11 @@ public partial class UpdateHandler
     private async Task<Message> SendAlert(Message msg)
     {
         await bot.SendChatAction(msg.Chat, ChatAction.UploadPhoto);
-        await using var fileStream = new FileStream("../../../Files/nehochyn.jpg", FileMode.Open, FileAccess.Read);
+        // using var fileStream = new FileStream("/Files/nehochyn.jpg", FileMode.Open, FileAccess.Read);
         var prompt = GetRandomPrompt();
         var response = await prompter.SendAsync(prompt) ?? "Алиса сдохла";
 
-        await bot.SendPhoto(msg.Chat, fileStream, caption: response, messageThreadId: msg.MessageThreadId);
+        await bot.SendMessage(msg.Chat, response, messageThreadId: msg.MessageThreadId);
         return await SendPoll(msg);
     }
 

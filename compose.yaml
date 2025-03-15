@@ -1,6 +1,0 @@
-﻿services:
-  aurora.endpoints.borealisbot:
-    image: aurora.endpoints.borealisbot
-    build:
-      context: .
-      dockerfile: Aurora.EndPoints.BorealisBot/Dockerfile
