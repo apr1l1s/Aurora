@@ -43,10 +43,6 @@ internal class Program
                     .AddScoped<UpdateHandler>()
                     .AddScoped<ReceiverService>()
                     .AddHostedService<PollingService>()
-                    .AddDbContext<AppDbContext>()
-                    .ConfigureDbContext<AppDbContext>(options => options.UseNpgsql(context.HostingEnvironment.IsStaging()
-                        ? "Host=localhost:5432;Database=mydatabase;Username=user;Password=password"
-                        : "Host=postgres;Database=mydatabase;Username=user;Password=password"))
                     .AddYandexGpt(context.Configuration)
                     .BuildServiceProvider();
             })
