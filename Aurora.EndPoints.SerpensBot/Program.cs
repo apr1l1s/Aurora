@@ -17,13 +17,14 @@ internal class Program
     {
         Console.WriteLine("Welcome to Aurora - SerpensBot");
         await Host.CreateDefaultBuilder(args)
+            .UseEnvironment(Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? Environments.Production)
             .ConfigureAppConfiguration((hostingContext, configuration) =>
             {
                 var appPath = string.Empty;
-                var basePath = string.Empty;
 
+                var isLocal = Environment.GetEnvironmentVariable("DOTNET_IS_LOCAL") == "True";
                 var environment = hostingContext.HostingEnvironment;
-                if (environment.IsDevelopment())
+                if (environment.IsDevelopment() || isLocal)
                 {
                     appPath = environment.ContentRootPath;
                 }
