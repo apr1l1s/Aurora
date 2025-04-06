@@ -1,7 +1,5 @@
-﻿using Aurora.Domain.Core.Context;
-using Aurora.EndPoints.SerpensBot.Services.Handlers;
+﻿using Aurora.EndPoints.SerpensBot.Services.Handlers;
 using Aurora.EndPoints.SerpensBot.Services.HostedServices;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,9 +12,7 @@ namespace Aurora.EndPoints.SerpensBot;
 internal class Program
 {
     static async Task Main(string[] args)
-    {
-        Console.WriteLine("Welcome to Aurora - SerpensBot");
-        await Host.CreateDefaultBuilder(args)
+        => await Host.CreateDefaultBuilder(args)
             .UseEnvironment(Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? Environments.Production)
             .ConfigureAppConfiguration((hostingContext, configuration) =>
             {
@@ -30,7 +26,7 @@ internal class Program
                 }
 
                 configuration.AddJsonFile(Path.Combine(appPath, $"appsettings.{environment.EnvironmentName}.json"),
-                        optional: true, reloadOnChange: true);
+                    optional: true, reloadOnChange: true);
             })
             .ConfigureServices((context, services) =>
             {
@@ -49,5 +45,4 @@ internal class Program
             })
             .ConfigureLogging(logging => logging.ClearProviders().AddConsole().AddDebug()).Build()
             .RunAsync();
-    }
 }
