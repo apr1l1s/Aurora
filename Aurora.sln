@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.EndPoints.SerpentsBo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.Domain.Core", "Aurora.Domain.Core\Aurora.Domain.Core.csproj", "{DFB5BF1F-C30C-4412-8842-B5FAB1EEF62E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora.EndPoints.Procyon", "Aurora.EndPoints.Procyon\Aurora.EndPoints.Procyon.csproj", "{B0875C21-E24B-4D92-8EF6-63D8E8F00740}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,7 @@ Global
 		{F176F088-0070-4C40-B654-1EF0005CB6C2} = {2D0CCCC7-93B2-4DE6-9599-2D70F8A28538}
 		{8EBA245A-FAA0-4347-A216-8EAC7C8287FD} = {CECA1C6F-9BD1-42DC-8178-CE29C8F35AD3}
 		{DFB5BF1F-C30C-4412-8842-B5FAB1EEF62E} = {576CECB6-77CF-47E5-BBAE-CE4421DBD20E}
+		{B0875C21-E24B-4D92-8EF6-63D8E8F00740} = {2D0CCCC7-93B2-4DE6-9599-2D70F8A28538}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F176F088-0070-4C40-B654-1EF0005CB6C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -40,5 +43,9 @@ Global
 		{DFB5BF1F-C30C-4412-8842-B5FAB1EEF62E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFB5BF1F-C30C-4412-8842-B5FAB1EEF62E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFB5BF1F-C30C-4412-8842-B5FAB1EEF62E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0875C21-E24B-4D92-8EF6-63D8E8F00740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0875C21-E24B-4D92-8EF6-63D8E8F00740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0875C21-E24B-4D92-8EF6-63D8E8F00740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0875C21-E24B-4D92-8EF6-63D8E8F00740}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
