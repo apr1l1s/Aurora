@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using System.Text;
 
 namespace Aurora.EndPoints.Procyon.Providers;
@@ -18,8 +19,9 @@ public static class ZapretProvider
     /// Запускает консольное приложение.
     /// </summary>
     /// <param name="filePath">Путь к исполняемому файлу.</param>
-    public static void Start(string filePath)
+    public static void Start()
     {
+        string zapretPath = @"C:\Users\" + Environment.UserName + @"\Downloads\zapret\general (ALT).bat";
         if (_isRunning)
         {
             throw new InvalidOperationException("Процесс уже запущен.");
@@ -29,7 +31,7 @@ public static class ZapretProvider
         {
             StartInfo = new ProcessStartInfo
             {
-                FileName = filePath,
+                FileName = zapretPath,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 UseShellExecute = false,
