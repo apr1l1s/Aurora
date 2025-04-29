@@ -6,7 +6,7 @@ public class TelegramCommand
 {
     public TelegramCommandType TelegramCommandType { get; }
 
-    public string[] PoolVariants { get; }
+    public string[]? PoolVariants { get; }
 
     public bool ReputationStatus { get; }
 
@@ -61,6 +61,7 @@ public class TelegramCommand
                 //Узнать номер группы комманды
                 //Проверить есть ли упоминание бота
                 //Начать перечислять все группы и записывать их в список ответов
+                PoolVariants = ["", ""];
             }
         }
 

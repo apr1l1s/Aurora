@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Aurora.EndPoints.Procyon"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="300" Width="200">
     <Grid>
-
+        <ContentControl Grid.Row="0" Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>
