@@ -436,4 +436,4 @@ $RECYCLE.BIN/
 /my-db_old
 
 # Ignore configuration files
-appsettings.json
+Aurora.EndPoints.SerpentsBot/appsettings.json
