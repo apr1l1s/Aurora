@@ -435,10 +435,5 @@ $RECYCLE.BIN/
 /my-db-2
 /my-db_old
 
-/Teledoc.Katherine.Data.Core/Teledoc.Katherine.Data.Core.xml
-/Teledoc.Katherine.Domain.Core/Teledoc.Katherine.Domain.Core.xml
-/Teledoc.Katherine.EndPoints.WebUI/Teledoc.Katherine.EndPoints.WebUI.xml
-/TeledocApi/TeledocApi.xml
-/Teledoc.Guzalya.WebApi/Teledoc.Guzalya.WebApi.xml
-/Teledoc.Guzalya.Application/Teledoc.Guzalya.Application.xml
-/Teledoc.Service.BackgroundTaskLib/Teledoc.Service.BackgroundTaskLib.xml
+# Ignore configuration files
+appsettings.json
